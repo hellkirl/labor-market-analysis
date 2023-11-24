@@ -4,7 +4,7 @@ WORKDIR src
 
 COPY package*.json ./
 
-RUN npm install --registry=https://registry.npmjs.org/
+RUN npm install --registry=https://registry.yarnpkg.com/
 
 COPY . .
 
