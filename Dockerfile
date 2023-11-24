@@ -4,7 +4,7 @@ WORKDIR src
 
 COPY package*.json ./
 
-RUN npm install -g npm && npm install -g typescript
+RUN npm install -g npm && npm install -g typescript && npm install
 
 COPY . .
 
