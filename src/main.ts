@@ -1,4 +1,4 @@
-import { HHParser, SuperjobParser } from "./parsers";
+import { HHParser, SuperjobParser } from "./parsers.js";
 import cron from "node-cron";
 
 class Parsers {
