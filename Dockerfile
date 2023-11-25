@@ -4,7 +4,10 @@ WORKDIR src
 
 COPY package*.json ./
 
-RUN npm config set registry http://registry.npmjs.org/ && npm install
+RUN npm config get proxy && \
+    npm config rm proxy && \
+    npm config rm https-proxy && \
+    npm install
 
 COPY . .
 
