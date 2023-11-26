@@ -1,12 +1,13 @@
-import { config } from "./config";
-import { createRequest, sleep } from "./utils";
-import { collection } from "./db";
+import {config} from "./config";
+import {createRequest, sleep} from "./utils";
+import {collection} from "./db";
 import chrome from "selenium-webdriver/chrome";
-import { Builder, By } from "selenium-webdriver";
+import {Builder, By} from "selenium-webdriver";
 
 export class HHParser {
   public static async parse() {
     try {
+      console.log(`hhParser started at ${new Date().toLocaleString()}`);
       let page = 0;
 
       while (page <= 5) {
@@ -17,7 +18,7 @@ export class HHParser {
             method: "GET",
             baseURL: config.hhUrl,
             url: url,
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
           });
           const data = response.data["items"];
           for (const item of data) {
@@ -50,7 +51,7 @@ export class HHParser {
 
 export class SuperjobParser {
   public static async parse() {
-    const { Builder, By } = require("selenium-webdriver");
+    const {Builder, By} = require("selenium-webdriver");
     const chrome = require("selenium-webdriver/chrome");
 
     const chromeOptions = new chrome.Options();
@@ -64,6 +65,8 @@ export class SuperjobParser {
     await sleep(10000);
 
     let page = 1;
+
+    console.log(`superjobParser started at ${new Date().toLocaleString()}`);
 
     while (page < 36) {
       let vacanciesNumber = 0;
@@ -95,7 +98,7 @@ export class SuperjobParser {
             });
 
             const data = response.data;
-            if (!(await collection.findOne({ link: data["link"] }))) {
+            if (!(await collection.findOne({link: data["link"]}))) {
               await collection.insertOne(data);
             }
 
