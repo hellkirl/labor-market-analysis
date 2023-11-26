@@ -14,6 +14,13 @@ RUN apk add --no-cache \
     ttf-freefont \
     chromium
 
+ARG CHROMEDRIVER_VERSION=114.0.5735.90
+
+RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
+    unzip /tmp/chromedriver.zip -d /usr/local/bin/ && \
+    rm /tmp/chromedriver.zip && \
+    chmod +x /usr/local/bin/chromedriver
+
 ARG HOST
 ARG PORT
 ARG USERNM
